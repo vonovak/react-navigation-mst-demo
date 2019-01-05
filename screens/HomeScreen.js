@@ -13,7 +13,7 @@ import { WebBrowser } from 'expo';
 import { inject, observer } from 'mobx-react';
 import { MonoText } from '../components/StyledText';
 
-class HomeScreen extends React.Component {
+class _HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -80,7 +80,7 @@ class HomeScreen extends React.Component {
   };
 }
 
-export default inject('rootStore')(observer(HomeScreen));
+export const HomeScreen = inject('rootStore')(observer(_HomeScreen));
 
 const styles = StyleSheet.create({
   container: {
