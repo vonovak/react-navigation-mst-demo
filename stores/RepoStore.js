@@ -5,6 +5,7 @@ export const RepoStore = types
   .model('RepoStore', {
     identifier: types.optional(types.identifier, 'RepoStore'),
     repos: types.array(Repo),
+    username: types.optional(types.string, 'vonovak'),
   })
   .views(self => ({
     getRandomRepo() {
@@ -23,15 +24,22 @@ export const RepoStore = types
       self.repos = repos;
     };
     const fetchRepos = flow(function*() {
-      const reposJson = yield fetch(`https://api.github.com/users/vonovak/repos`).then(resp =>
-        resp.json()
+      if (!self.username) {
+        return;
+      }
+      const reposJson = yield fetch(`https://api.github.com/users/${self.username}/repos`).then(
+        resp => resp.json()
       );
       setRepos(reposJson);
       return reposJson;
     });
+    const setUsername = value => {
+      self.username = value;
+    };
 
     return {
       fetchRepos,
+      setUsername,
       afterCreate() {
         onSnapshot(self, () => {
           const rootStore = getRoot(self);
