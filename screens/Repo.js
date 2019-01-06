@@ -1,16 +1,20 @@
 import NavigationService from '../navigation/NavigationService';
 import { Image, ScrollView, Text, View, Button, FlatList } from 'react-native';
 import React from 'react';
+import styled from 'styled-components';
+const InfoText = styled(Text)`
+  margin: 8px;
+`;
 
 export const Repo = ({ repo, navigationStore }) => {
   return (
     <View
       css={`
-        margin: 10px;
-        background: papayawhip;
+        margin-vertical: 8px;
+        background: lightgrey;
       `}
     >
-      <Text
+      <InfoText
         onPress={() => {
           NavigationService.navigate('RepoDetailScreen', {
             key: 'RepoDetailScreen',
@@ -20,15 +24,15 @@ export const Repo = ({ repo, navigationStore }) => {
         }}
       >
         Repo name: {repo.name}
-      </Text>
+      </InfoText>
 
-      <Text
+      <InfoText
         onPress={() => {
           NavigationService.navigateToUserScreen(repo.owner);
         }}
       >
         Repo owner: {repo.owner.login}
-      </Text>
+      </InfoText>
     </View>
   );
 };

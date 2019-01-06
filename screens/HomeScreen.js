@@ -24,9 +24,7 @@ class _HomeScreen extends React.Component {
   }
 
   renderContent() {
-    const {
-      rootStore: { repoStore },
-    } = this.props;
+    const { repoStore } = this.props;
     return (
       <ScreenWrapper>
         <Row
@@ -35,7 +33,7 @@ class _HomeScreen extends React.Component {
             align-items: center;
           `}
         >
-          <Text>enter username: </Text>
+          <Text>enter github username: </Text>
           <TextInput
             css={`
               width: 200px;
@@ -45,6 +43,7 @@ class _HomeScreen extends React.Component {
             autoCapitalize="none"
             autoCorrect={false}
             value={repoStore.username}
+            onSubmitEditing={this.fetchRepos}
             onChangeText={repoStore.setUsername}
           />
         </Row>
@@ -60,9 +59,7 @@ class _HomeScreen extends React.Component {
   }
 
   fetchRepos = () => {
-    const {
-      rootStore: { repoStore },
-    } = this.props;
+    const { repoStore } = this.props;
     this.setState({
       observableFetchPromise: fromPromise(repoStore.fetchRepos()),
     });
@@ -71,12 +68,13 @@ class _HomeScreen extends React.Component {
   keyExtractor = item => item.id;
 
   renderItem = ({ item }) => {
-    const {
-      rootStore: { navigationStore },
-    } = this.props;
+    const { navigationStore } = this.props;
     const repo = item;
     return <Repo repo={repo} navigationStore={navigationStore} />;
   };
 }
 
-export const HomeScreen = inject('rootStore')(observer(_HomeScreen));
+export const HomeScreen = inject(({ rootStore: { navigationStore, repoStore } }) => ({
+  navigationStore,
+  repoStore,
+}))(observer(_HomeScreen));
