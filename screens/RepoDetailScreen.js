@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text, FlatList } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { inject, observer } from 'mobx-react';
 import NavigationService from '../navigation/NavigationService';
@@ -22,11 +22,11 @@ class _RepoDetailScreen extends React.Component {
           onPress={() => {
             const key = `RepoDetailScreen${NavigationService.generateUid()}`;
 
-            // this will push new screens on the stack
+            // this will push new screens on the stack thanks to unique key
             NavigationService.navigate('RepoDetailScreen', {
               key,
               params: { repo },
-              getNavigationParams: navigationStore => navigationStore.setRepoDetailsScreenParams,
+              getNavParamsSetter: navigationStore => navigationStore.setRepoDetailsScreenParams,
             });
           }}
         >
@@ -35,10 +35,7 @@ class _RepoDetailScreen extends React.Component {
 
         <Text
           onPress={() => {
-            NavigationService.navigate('UserScreen', {
-              params: { user: repo.owner },
-              getNavigationParams: navigationStore => navigationStore.setUserScreenParams,
-            });
+            NavigationService.navigateToUserScreen(repo.owner);
           }}
         >
           {repo.owner.login}

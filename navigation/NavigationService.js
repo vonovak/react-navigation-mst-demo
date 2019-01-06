@@ -19,16 +19,22 @@ function generateUid() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
 
-function navigate(routeName, { key, params, getNavigationParams }) {
-  const func = getNavigationParams(_navStore);
+function navigate(routeName, { params, getNavParamsSetter, key }) {
+  const func = getNavParamsSetter(_navStore);
   func(params, key);
   _navigator.dispatch(
     NavigationActions.navigate({
       routeName,
-      //   params,
       key,
     })
   );
+}
+
+function navigateToUserScreen(user) {
+  navigate('UserScreen', {
+    params: { user },
+    getNavParamsSetter: navigationStore => navigationStore.setUserScreenParams,
+  });
 }
 
 export default {
@@ -36,4 +42,5 @@ export default {
   setTopLevelNavigator,
   setNavigationStore,
   generateUid,
+  navigateToUserScreen,
 };
