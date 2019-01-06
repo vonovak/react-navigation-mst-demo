@@ -27,41 +27,8 @@ export const Repo = ({ repo, navigationStore }) => {
           NavigationService.navigateToUserScreen(repo.owner);
         }}
       >
-        Repo owner: {repo.owner.login} (tap me)
+        Repo owner: {repo.owner.login}
       </Text>
     </View>
   );
 };
-
-// export class Repo extends React.Component {
-//   render() {
-//     const { repo, navigationStore } = this.props;
-//     return (
-//       <View
-//         css={`
-//           margin: 1px;
-//         `}
-//       >
-//         <Text
-//           onPress={() => {
-//             NavigationService.navigate('RepoDetailScreen', {
-//               key: 'RepoDetailScreen',
-//               params: { repo },
-//               getNavParamsSetter: navigationStore => navigationStore.setRepoDetailsScreenParams,
-//             });
-//           }}
-//         >
-//           {repo.name}
-//         </Text>
-
-//         <Text
-//           onPress={() => {
-//             NavigationService.navigateToUserScreen(repo.owner);
-//           }}
-//         >
-//           {repo.owner.login}
-//         </Text>
-//       </View>
-//     );
-//   }
-// }

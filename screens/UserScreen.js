@@ -1,17 +1,6 @@
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Button,
-} from 'react-native';
-import { WebBrowser } from 'expo';
+import { Image, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import { MonoText } from '../components/StyledText';
 import NavigationService from '../navigation/NavigationService';
 import { ScreenWrapper } from './Components';
 

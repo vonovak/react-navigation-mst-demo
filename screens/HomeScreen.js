@@ -19,7 +19,7 @@ class _HomeScreen extends React.Component {
         <Button title="fetch repos" onPress={repoStore.fetchRepos} />
 
         <FlatList
-          data={repoStore.repos}
+          data={repoStore.repos.slice()}
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
         />

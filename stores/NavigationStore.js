@@ -6,7 +6,7 @@ export const NavigationStore = types
   .model('NavigationStore', {
     repoDetailScreenParams: types.map(
       types.model('RepoDetailScreenParams', {
-        repo: types.maybe(types.safeReference(Repo)),
+        repo: types.optional(types.safeReference(Repo)),
       })
     ),
     userScreenParams: types.model('UserScreenParams', {

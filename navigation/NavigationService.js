@@ -16,7 +16,7 @@ function generateUid() {
       .toString(16)
       .substring(1);
   }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  return '-' + s4() + s4() + '-' + s4() + '-' + s4();
 }
 
 function navigate(routeName, { params, getNavParamsSetter, key }) {

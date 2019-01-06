@@ -6,6 +6,12 @@ export const RepoStore = types
     identifier: types.optional(types.identifier, 'RepoStore'),
     repos: types.array(Repo),
   })
+  .views(self => ({
+    getRandomRepo() {
+      const index = Math.floor(Math.random() * self.repos.length);
+      return self.repos[index];
+    },
+  }))
   .actions(self => {
     const setRepos = reposArray => {
       const { userStore } = getRoot(self);
