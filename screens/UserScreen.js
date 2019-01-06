@@ -16,9 +16,12 @@ import NavigationService from '../navigation/NavigationService';
 import { ScreenWrapper } from './Components';
 
 class _UserScreen extends React.Component {
-  static navigationOptions = () => ({
-    title: 'User Detail',
-  });
+  static navigationOptions = ({ screenProps }) => {
+    const { user } = screenProps.navigationStore.userScreenParams;
+    return {
+      title: user.login,
+    };
+  };
 
   render() {
     const {

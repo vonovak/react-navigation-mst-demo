@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, AsyncStorage } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
-import AppNavigator from './navigation/AppNavigator';
+import { createAppNavigator } from './navigation/AppNavigator';
 import { Provider } from 'mobx-react';
 import { applySnapshot } from 'mobx-state-tree';
 import { RootStore } from './stores/RootStore';
@@ -31,6 +31,7 @@ export default class App extends React.Component {
         />
       );
     } else {
+      const AppNavigator = createAppNavigator(this.rootStore);
       return (
         <Provider rootStore={this.rootStore}>
           <View style={styles.container}>

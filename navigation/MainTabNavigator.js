@@ -1,6 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import hoistNonReactStatic from 'hoist-non-react-statics';
 
 import TabBarIcon from '../components/TabBarIcon';
 import { HomeScreen } from '../screens/HomeScreen';
@@ -39,7 +40,14 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-export default createBottomTabNavigator({
-  HomeStack,
-  SettingsStack,
-});
+export const createMainTabNavigator = rootStore => {
+  const TargetComponent = props => {
+    return <HomeStack {...props} screenProps={rootStore} />;
+  };
+
+  return createBottomTabNavigator({
+    HomeStack: hoistNonReactStatic(TargetComponent, HomeStack),
+    // HomeStack,
+    SettingsStack,
+  });
+};
