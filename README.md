@@ -24,3 +24,9 @@ There are four screens to navigate to:
 - RepoScreen
 - UserScreen
 - SettingsScreen
+
+### Running this demo locally
+
+- install expo cli
+- clone and run `yarn`
+- run `yarn start`
