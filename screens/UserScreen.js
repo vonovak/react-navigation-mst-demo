@@ -13,9 +13,7 @@ class _UserScreen extends React.Component {
   };
 
   render() {
-    const {
-      rootStore: { userStore, navigationStore },
-    } = this.props;
+    const { navigationStore } = this.props;
 
     const {
       userScreenParams: { user },
@@ -36,4 +34,6 @@ class _UserScreen extends React.Component {
   }
 }
 
-export const UserScreen = inject('rootStore')(observer(_UserScreen));
+export const UserScreen = inject(({ rootStore: { navigationStore } }) => ({
+  navigationStore,
+}))(observer(_UserScreen));

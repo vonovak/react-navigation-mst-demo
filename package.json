@@ -13,6 +13,7 @@
   "dependencies": {
     "@expo/samples": "2.1.1",
     "expo": "^32.0.0",
+    "hoist-non-react-statics": "^3.2.1",
     "mobx": "^5.8.0",
     "mobx-react": "^5.4.3",
     "mobx-state-tree": "^3.10.0",

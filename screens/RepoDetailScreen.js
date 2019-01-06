@@ -39,7 +39,7 @@ class _RepoDetailScreen extends React.Component {
             NavigationService.navigateToUserScreen(repo.owner);
           }}
         >
-          owner is: {repo.owner.login} (tap me)
+          repo owner is: {repo.owner.login} (tap me)
         </Text>
 
         <Button
