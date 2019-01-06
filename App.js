@@ -5,6 +5,7 @@ import AppNavigator from './navigation/AppNavigator';
 import { Provider } from 'mobx-react';
 import { applySnapshot } from 'mobx-state-tree';
 import { RootStore } from './stores/RootStore';
+import NavigationService from './navigation/NavigationService';
 
 const appStatePersistenceKey = 'appStatePersistenceKey';
 const navigationPersistenceKey = __DEV__ ? 'NavigationStateDEV' : null;
@@ -17,6 +18,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.rootStore = RootStore.create({});
+    NavigationService.setNavigationStore(this.rootStore.navigationStore);
   }
 
   render() {
@@ -33,7 +35,12 @@ export default class App extends React.Component {
         <Provider rootStore={this.rootStore}>
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            <AppNavigator persistenceKey={navigationPersistenceKey} />
+            <AppNavigator
+              persistenceKey={navigationPersistenceKey}
+              ref={navigatorRef => {
+                NavigationService.setTopLevelNavigator(navigatorRef);
+              }}
+            />
           </View>
         </Provider>
       );

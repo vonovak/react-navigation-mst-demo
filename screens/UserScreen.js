@@ -14,89 +14,29 @@ import { inject, observer } from 'mobx-react';
 import { MonoText } from '../components/StyledText';
 import NavigationService from '../navigation/NavigationService';
 
-class _HomeScreen extends React.Component {
+class _UserScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title: 'User Detail',
   };
 
   render() {
     const {
-      rootStore: { repoStore, navigationStore },
+      rootStore: { userStore, navigationStore },
     } = this.props;
+
+    const { userScreenParams } = navigationStore;
+
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <Button title="fetch repos" onPress={repoStore.fetchRepos} />
-
-          {repoStore.repos.map(repo => {
-            return (
-              <React.Fragment key={String(repo.id)}>
-                <Text
-                  onPress={() => {
-                    NavigationService.navigate('RepoDetailScreen', {
-                      key: 'RepoDetailScreen',
-                      params: { repo },
-                      getNavigationParams: navigationStore =>
-                        navigationStore.setRepoDetailsScreenParams,
-                    });
-                  }}
-                >
-                  {repo.name}
-                </Text>
-
-                <Text
-                  onPress={() => {
-                    NavigationService.navigate('UserScreen', {
-                      params: { user: repo.owner },
-                      getNavigationParams: navigationStore => navigationStore.setUserScreenParams,
-                    });
-                  }}
-                >
-                  {repo.owner.login}
-                </Text>
-              </React.Fragment>
-            );
-          })}
+          <Text>{userScreenParams.user.login}</Text>
         </ScrollView>
       </View>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
 
-export const HomeScreen = inject('rootStore')(observer(_HomeScreen));
+export const UserScreen = inject('rootStore')(observer(_UserScreen));
 
 const styles = StyleSheet.create({
   container: {

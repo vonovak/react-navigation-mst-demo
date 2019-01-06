@@ -2,6 +2,7 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { inject, observer } from 'mobx-react';
+import NavigationService from '../navigation/NavigationService';
 
 class _RepoDetailScreen extends React.Component {
   static navigationOptions = {
@@ -10,7 +11,6 @@ class _RepoDetailScreen extends React.Component {
 
   render() {
     const {
-      navigation,
       navigation: { state },
       rootStore: { navigationStore },
     } = this.props;
@@ -20,13 +20,28 @@ class _RepoDetailScreen extends React.Component {
       <ScrollView style={styles.container}>
         <Text
           onPress={() => {
-            const rand = Math.floor(Math.random() * 100 + 1);
-            const key = `RepoDetailScreen${rand}`;
-            navigationStore.setRepoDetailsScreenParams(key, { repo });
-            navigation.navigate({ routeName: 'RepoDetailScreen', key });
+            const key = `RepoDetailScreen${NavigationService.generateUid()}`;
+
+            // this will push new screens on the stack
+            NavigationService.navigate('RepoDetailScreen', {
+              key,
+              params: { repo },
+              getNavigationParams: navigationStore => navigationStore.setRepoDetailsScreenParams,
+            });
           }}
         >
           {repo?.name} {state.key}
+        </Text>
+
+        <Text
+          onPress={() => {
+            NavigationService.navigate('UserScreen', {
+              params: { user: repo.owner },
+              getNavigationParams: navigationStore => navigationStore.setUserScreenParams,
+            });
+          }}
+        >
+          {repo.owner.login}
         </Text>
       </ScrollView>
     );

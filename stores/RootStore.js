@@ -10,7 +10,7 @@ export const RootStore = types
     userStore: types.optional(UserStore, () => UserStore.create({ users: {} })),
     repoStore: types.optional(RepoStore, () => RepoStore.create({ repos: [] })),
     navigationStore: types.optional(NavigationStore, () =>
-      NavigationStore.create({ repoDetailScreenParams: {} })
+      NavigationStore.create({ repoDetailScreenParams: {}, userScreenParams: {} })
     ),
   })
   .actions(self => ({
