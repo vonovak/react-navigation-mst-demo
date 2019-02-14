@@ -19,7 +19,6 @@ export const Repo = ({ repo, navigationStore }) => {
           NavigationService.navigate('RepoDetailScreen', {
             key: 'RepoDetailScreen',
             params: { repo },
-            getNavParamsSetter: navigationStore => navigationStore.setRepoDetailsScreenParams,
           });
         }}
       >

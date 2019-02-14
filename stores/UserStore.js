@@ -8,12 +8,12 @@ export const UserStore = types
   })
   .actions(self => ({
     createUser(userJson) {
-      const user = User.create({ ...userJson, id: String(userJson.id) });
+      const user = User.create({ ...userJson, id: `user_${userJson.id}` });
       self.users.set(user.id, user);
       return user;
     },
     createOrGetUser(userJson) {
-      const existingUser = self.users.get(String(userJson.id));
+      const existingUser = self.users.get(`user_${userJson.id}`);
       return existingUser ? existingUser : self.createUser(userJson);
     },
   }));

@@ -4892,9 +4892,9 @@ mobx-react@^5.4.3:
     react-lifecycles-compat "^3.0.2"
 
 mobx-state-tree@^3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-3.10.0.tgz#92b893e2c85339e246779d19928b6d69b798a813"
-  integrity sha512-CEOZRx8wOSwEI7cYiD+kvPrAtpDB5VNpWVWL11mCXljx8WE9Ec6nwL/xZRYMZVFRvxvAoSFS9VqmVDiUHAZ1LA==
+  version "3.10.2"
+  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-3.10.2.tgz#1cbb99a65e7e0a8f91e2c2be44d23de9b1c71afc"
+  integrity sha512-DCt05qayAaLEMldsNYicJiLUg5rFyEzivlD4oiy8HjTQ+M3aqRbgvz9kn0g1uR/5IT27jPMkAZO8MSICDGitDw==
 
 mobx-utils@^5.1.0:
   version "5.1.0"
@@ -4902,9 +4902,9 @@ mobx-utils@^5.1.0:
   integrity sha512-ym9xPeW0UVNn5acrT3dTQXOu2L0+zxh0Z/TG9AFqnuI7VpCLZci09pfJG2uFggfQ9QT02Imh9h1KgxpchUgMcg==
 
 mobx@^5.8.0:
-  version "5.8.0"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.8.0.tgz#cf59eae4baa2fde4387ffb6462b7ccf3b497b03c"
-  integrity sha512-NsZB+9bF5j+nv9Qwk6bNeE3np26a4TbTGkMpOLf6o1zXoM9BtHPQn/00px4uZ2AXJXtQML5P4MEWdMm6icMIfQ==
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.9.0.tgz#a08edd7132787f771409c9c33788a5df66ff7ce7"
+  integrity sha512-D3mY1uM3H9BP5duk5tTanrOq92yqetYKsprPJWvkKDrbs+fro59xrpWX+vtr10YoLgJIFz+a4A8lI+4YtqmCUQ==
 
 moment-timezone@^0.5.23:
   version "0.5.23"

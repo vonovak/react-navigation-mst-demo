@@ -5,19 +5,16 @@ import NavigationService from '../navigation/NavigationService';
 import { ScreenWrapper } from './Components';
 
 class _UserScreen extends React.Component {
-  static navigationOptions = ({ screenProps }) => {
-    const { user } = screenProps.navigationStore.userScreenParams;
+  static navigationOptions = ({ screenProps, navigation }) => {
+    const { user } = screenProps.navigationStore.getParamsForCurrentRoute(navigation);
     return {
       title: user.login,
     };
   };
 
   render() {
-    const { navigationStore } = this.props;
-
-    const {
-      userScreenParams: { user },
-    } = navigationStore;
+    const { navigation, navigationStore } = this.props;
+    const { user } = navigationStore.getParamsForCurrentRoute(navigation);
 
     return (
       <ScreenWrapper>

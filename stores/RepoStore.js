@@ -19,7 +19,7 @@ export const RepoStore = types
 
       const repos = reposArray.map(it => {
         const owner = userStore.createOrGetUser(it.owner);
-        return Repo.create({ ...it, id: String(it.id), owner });
+        return Repo.create({ ...it, id: `repo_${it.id}`, owner });
       });
       self.repos = repos;
     };

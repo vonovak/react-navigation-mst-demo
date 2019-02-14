@@ -12,11 +12,10 @@ class _RepoDetailScreen extends React.Component {
 
   render() {
     const {
-      navigation: { state },
+      navigation,
       rootStore: { navigationStore, repoStore },
     } = this.props;
-    const { repoDetailScreenParams } = navigationStore;
-    const { repo } = repoDetailScreenParams.get(state.key);
+    const { repo } = navigationStore.getParamsForCurrentRoute(navigation);
 
     const randomRepo = repoStore.getRandomRepo();
     return (
@@ -32,7 +31,7 @@ class _RepoDetailScreen extends React.Component {
         >
           repo name: {repo.name}
         </Text>
-        <Text>navigation key is: {state.key}</Text>
+        <Text>navigation key is: {navigation.state.key}</Text>
 
         <Text
           onPress={() => {
@@ -54,7 +53,6 @@ class _RepoDetailScreen extends React.Component {
             NavigationService.navigate('RepoDetailScreen', {
               key,
               params: { repo: randomRepo },
-              getNavParamsSetter: navigationStore => navigationStore.setRepoDetailsScreenParams,
             });
           }}
         />

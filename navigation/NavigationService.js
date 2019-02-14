@@ -1,5 +1,5 @@
 import { NavigationActions } from 'react-navigation';
-
+import { RouteParams, RouteParam } from '../stores/NavigationStore';
 let _navigator, _navStore;
 
 function setTopLevelNavigator(navigatorRef) {
@@ -19,9 +19,9 @@ function generateUid() {
   return '-' + s4() + s4() + '-' + s4() + '-' + s4();
 }
 
-function navigate(routeName, { params, getNavParamsSetter, key }) {
-  const func = getNavParamsSetter(_navStore);
-  func(params, key);
+function navigate(routeName, { params, key }) {
+  const routeParams = RouteParams.create({ routeKey: key, params });
+  _navStore.setParamsForRoute(routeParams);
   _navigator.dispatch(
     NavigationActions.navigate({
       routeName,
@@ -33,7 +33,7 @@ function navigate(routeName, { params, getNavParamsSetter, key }) {
 function navigateToUserScreen(user) {
   navigate('UserScreen', {
     params: { user },
-    getNavParamsSetter: navigationStore => navigationStore.setUserScreenParams,
+    key: 'UserScreen',
   });
 }
 
